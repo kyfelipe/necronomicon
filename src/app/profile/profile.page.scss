@@ -1,0 +1,14 @@
+.div-profile {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.img-profile {
+    z-index: 2;
+    height: 30vh;
+    width: auto;
+    border-radius: 50%;
+    border: #ffffff 1px solid;
+}
