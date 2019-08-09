@@ -1,11 +1,15 @@
 <app-toolbar title="Classes"></app-toolbar>
 
 <ion-content>
-    <ion-list class="ion-padding">
-        <ion-card *ngFor="let cl of classes">
-            <ion-card-header>
-                <ion-card-title>{{cl.titulo}}</ion-card-title>
-            </ion-card-header>
-        </ion-card>
-    </ion-list>
+    <ion-grid class="ion-padding">
+        <ion-row>
+            <ion-col *ngFor="let cl of classes" size="12" size-lg="4">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>{{cl.titulo}}</ion-card-title>
+                    </ion-card-header>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
