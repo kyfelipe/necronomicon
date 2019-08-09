@@ -1,0 +1,23 @@
+<ion-content>
+    <ion-grid class="grid-login">
+        <ion-row class="ion-justify-content-center">
+            <ion-card class="card">
+                <ion-card-header>
+                    <ion-card-title>Login</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="card-content">
+                    <ion-item class="ion-margin-bottom">
+                        <ion-label position="fixed">E-mail</ion-label>
+                        <ion-input type="email" placeholder="E-mail"></ion-input>
+                    </ion-item>
+                    <ion-item class="ion-margin-bottom">
+                        <ion-label position="fixed">Password</ion-label>
+                        <ion-input type="password" placeholder="Password"></ion-input>
+                    </ion-item>
+
+                    <ion-button (click)="login()" class="ion-margin-bottom ion-float-end" color="primary">Sign in</ion-button>
+                </ion-card-content>
+            </ion-card>
+        </ion-row>
+    </ion-grid>
+</ion-content>
