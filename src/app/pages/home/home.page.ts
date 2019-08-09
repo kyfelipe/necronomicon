@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Class} from "../../models/class";
+import {Class} from "../../../models/class";
 import {LoadingController} from "@ionic/angular";
-import {SchoolClassService} from "../../providers/services/class/school-class.service";
+import {SchoolClassService} from "../../../providers/services/class/school-class.service";
 
 @Component({
     selector: 'app-home',
