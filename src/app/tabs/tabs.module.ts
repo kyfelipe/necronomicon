@@ -14,7 +14,8 @@ const routes: Routes = [
         component: TabsPage,
         children: [
             { path: 'class', loadChildren: () => import('./../home/home.module').then( m => m.HomePageModule)},
-            { path: 'profile', loadChildren: './../profile/profile.module#ProfilePageModule' }
+            { path: 'profile', loadChildren: './../profile/profile.module#ProfilePageModule' },
+            { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
         ]
     }
 ];
