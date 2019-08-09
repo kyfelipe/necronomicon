@@ -1,16 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Platform} from "@ionic/angular";
+import {NavController, Platform} from "@ionic/angular";
+import {LoginService} from "../../../providers/services/login/login.service";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss'],
+    providers: [LoginService]
 })
 export class LoginPage implements OnInit {
     public isMobile: boolean;
+    public email: string;
+    public password: string;
 
-    constructor(private route: Router, private plt: Platform) { }
+    constructor(private route: Router, private plt: Platform, private navCtrl: NavController, private loginService: LoginService) { }
 
     ngOnInit() {
         this.isMobile = this.plt.is('ios') || this.plt.is('android');
@@ -22,7 +26,14 @@ export class LoginPage implements OnInit {
     }
 
     public login() {
-        this.route.navigate(['']).catch(err => console.log(err));
+        this.loginService
+            .login(this.email, this.password)
+            .subscribe(user => {
+                console.log(user);
+                localStorage.setItem('user', user);
+                this.route.navigate(['']).catch(err => console.log(err));
+            });
+
     }
 
 }
