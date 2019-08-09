@@ -6,21 +6,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProfilePage } from './profile.page';
+import {ToolbarModule} from '../component/toolbar/toolbar.module';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ProfilePage
-  }
+    {
+        path: '',
+        component: ProfilePage
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [ProfilePage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+        ToolbarModule
+    ],
+    declarations: [ProfilePage]
 })
 export class ProfilePageModule {}
