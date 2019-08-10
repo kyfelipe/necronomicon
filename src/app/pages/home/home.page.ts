@@ -1,37 +1,57 @@
 import {Component, OnInit} from '@angular/core';
-import {Class} from "../../../models/class";
-import {LoadingController} from "@ionic/angular";
-import {SchoolClassService} from "../../../providers/services/class/school-class.service";
+import {Class} from '../../../models/class';
+import {LoadingController} from '@ionic/angular';
+import {SchoolClassService} from '../../../providers/services/class/school-class.service';
+import {ActivatedRoute} from '@angular/router';
+import {StudentService} from '../../../providers/services/student/student.service';
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
-    providers: [SchoolClassService]
+    styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
     public classes: Class[];
-    constructor(private schoolClassService: SchoolClassService, private loadingCtrl: LoadingController) { }
+    constructor(
+        private loadingCtrl: LoadingController,
+        private route: ActivatedRoute,
+        private studentService: StudentService
+    ) { }
 
-    async ngOnInit() {
-        const loading = await this.loadingCtrl.create({
+    ngOnInit() {
+/*        const loading = await this.loadingCtrl.create({
             message: 'Loading classes...'
         });
-
-        /*loading.present();*/
+        loading.present();*/
         this.classes = [
             {
                 titulo: 'Math'
             },
             {
                 titulo: 'Science'
+            },
+            {
+                titulo: 'Science'
+            },
+            {
+                titulo: 'Science'
+            },
+            {
+                titulo: 'Science'
+            },
+            {
+                titulo: 'Science'
+            },
+            {
+                titulo: 'Science'
             }
         ];
-        /*loading.dismiss();*/ //remover o loading
-        /*this.schoolClassService.searchAll();*/
+        this.search();
+        /*loading.dismiss();*/ // remover o loading
     }
 
-    public searchClasses(): Class[] {
-        return ;
+    public search() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        this.studentService.search(user.id).subscribe((res) => console.log(res));
     }
 }

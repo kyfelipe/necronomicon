@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {Router} from "@angular/router";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {LoginResponse} from '../../../models/login-response';
 
 @Injectable()
 export class LoginService {
@@ -12,20 +12,17 @@ export class LoginService {
     constructor(private http: HttpClient, private router: Router) { }
 
     public login(email: string, password: string) {
-        return this.http.post<any>(this.url + '/auth/login', { email, password }).pipe(
-            catchError(this.handleError<any>('Error logging in'))
-        );
+        return this.http.post<LoginResponse>(this.url + '/auth/login', { email, password })
+            .pipe(map((user) => this.setUserLocalStorage(user)));
     }
 
     public logout() {
         localStorage.removeItem('user');
-        this.router.navigate(['/login']);
     }
 
-    protected handleError<T> (operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-            console.error(error);
-            return of(result as T);
-        };
+    private setUserLocalStorage(user: LoginResponse) {
+        if (user && user.accessToken) {
+            localStorage.setItem('user', JSON.stringify(user));
+        }
     }
 }
