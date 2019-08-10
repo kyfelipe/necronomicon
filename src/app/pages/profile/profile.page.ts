@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+    public profile: {
+        name: string,
+        registerNumber: string
+    };
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.profile = JSON.parse(localStorage.getItem('profile'));
+    }
 
 }

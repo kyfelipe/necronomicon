@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Class} from '../../../models/class';
 import {LoadingController} from '@ionic/angular';
-import {SchoolClassService} from '../../../providers/services/class/school-class.service';
-import {ActivatedRoute} from '@angular/router';
+
+import {Student} from '../../../models/student';
 import {StudentService} from '../../../providers/services/student/student.service';
 
 @Component({
@@ -11,47 +10,35 @@ import {StudentService} from '../../../providers/services/student/student.servic
     styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-    public classes: Class[];
+    public student: Student;
+
     constructor(
         private loadingCtrl: LoadingController,
-        private route: ActivatedRoute,
         private studentService: StudentService
     ) { }
 
     ngOnInit() {
-/*        const loading = await this.loadingCtrl.create({
-            message: 'Loading classes...'
-        });
-        loading.present();*/
-        this.classes = [
-            {
-                titulo: 'Math'
-            },
-            {
-                titulo: 'Science'
-            },
-            {
-                titulo: 'Science'
-            },
-            {
-                titulo: 'Science'
-            },
-            {
-                titulo: 'Science'
-            },
-            {
-                titulo: 'Science'
-            },
-            {
-                titulo: 'Science'
-            }
-        ];
         this.search();
-        /*loading.dismiss();*/ // remover o loading
     }
 
-    public search() {
+    public async search() {
+
+        const loading = await this.loadingCtrl.create({
+            message: 'Loading classes...'
+        });
+        loading.present();
         const user = JSON.parse(localStorage.getItem('user'));
-        this.studentService.search(user.id).subscribe((res) => console.log(res));
+        this.studentService.search(user.id).subscribe(reg => {
+            this.student = reg;
+            localStorage.setItem(
+                'profile',
+                JSON.stringify(
+                    {
+                        name: reg.name,
+                        registerNumber: reg.studentNumber
+                    })
+            );
+            loading.dismiss();
+        });
     }
 }

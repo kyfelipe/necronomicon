@@ -1,16 +1,15 @@
 <app-toolbar title="Classes"></app-toolbar>
 
-<ion-content>
+<ion-content *ngIf="student">
     <ion-grid class="ion-padding">
         <ion-row>
-            <ion-col *ngFor="let cl of classes" size="12" size-lg="4">
+            <ion-col *ngFor="let cl of student.schoolClasses" size="12" size-lg="4">
                 <ion-card>
                     <ion-card-header>
-                        <ion-card-title>{{cl.titulo}}</ion-card-title>
+                        <ion-card-title>{{cl}}</ion-card-title>
                     </ion-card-header>
                 </ion-card>
             </ion-col>
         </ion-row>
-        <ion-button (click)="search()">BUSCAR</ion-button>
     </ion-grid>
 </ion-content>

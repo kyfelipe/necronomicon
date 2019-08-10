@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
-import {HomeResolver} from '../home/home.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'class', pathMatch: 'full' },
@@ -16,9 +15,6 @@ const routes: Routes = [
         children: [
             {
                 path: 'class',
-/*                resolve: {
-                    student: HomeResolver
-                },*/
                 loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
             },
             {
