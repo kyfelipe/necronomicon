@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AlertController, NavController, Platform} from '@ionic/angular';
+import {AlertController, LoadingController, NavController, Platform} from '@ionic/angular';
 import {LoginService} from '../../../providers/services/login/login.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class LoginPage implements OnInit {
                 private plt: Platform,
                 private navCtrl: NavController,
                 private loginService: LoginService,
-                private alertCtrl: AlertController
+                private alertCtrl: AlertController,
+                private loadingController: LoadingController
     ) { }
 
     ngOnInit() {
@@ -30,11 +31,17 @@ export class LoginPage implements OnInit {
         console.log('Cordova: ' + this.plt.is('cordova'));*/
     }
 
-    public login() {
+    public async login() {
+        const loading = await this.loadingController.create({
+            message: 'Validating user...',
+            duration: 2000
+        });
+        await loading.present();
         this.loginService
             .login(this.email, this.password)
             .subscribe((user) => {
                 this.route.navigate(['']).catch(err => console.log(err));
+                loading.dismiss();
             }, err => {
                 console.log(err);
                 this.alertCtrl.create({

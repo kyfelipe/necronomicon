@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const user = JSON.parse(localStorage.getItem('user'));
+
         if (user && user.accessToken) {
             request = request.clone({
                 setHeaders: {
@@ -13,7 +14,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
-        console.log(request);
+
         return next.handle(request);
     }
 }
