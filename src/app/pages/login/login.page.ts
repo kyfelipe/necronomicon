@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AlertController, NavController, Platform} from '@ionic/angular';
 import {LoginService} from '../../../providers/services/login/login.service';
-import {error} from 'util';
-import {LoginResponse} from '../../../models/login-response';
-import {StudentService} from '../../../providers/services/student/student.service';
 
 @Component({
     selector: 'app-login',
@@ -21,8 +18,7 @@ export class LoginPage implements OnInit {
                 private plt: Platform,
                 private navCtrl: NavController,
                 private loginService: LoginService,
-                private alertCtrl: AlertController,
-                private studentService: StudentService
+                private alertCtrl: AlertController
     ) { }
 
     ngOnInit() {
@@ -32,12 +28,6 @@ export class LoginPage implements OnInit {
         console.log('Mobile: ' + this.plt.is('mobile'));
         console.log('Mobile Web: ' + this.plt.is('mobileweb'));
         console.log('Cordova: ' + this.plt.is('cordova'));*/
-        this.search();
-    }
-
-    public search() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        this.studentService.search(user.id).subscribe((res) => console.log(res));
     }
 
     public login() {
