@@ -5,12 +5,17 @@
             <ion-label>Classes</ion-label>
         </ion-tab-button>
 
+        <ion-tab-button *ngIf="isAdm" tab="register">
+            <ion-icon name="archive"></ion-icon>
+            <ion-label>Register</ion-label>
+        </ion-tab-button>
+
         <ion-tab-button tab="profile">
             <ion-icon name="contacts"></ion-icon>
             <ion-label>Profile</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="presence">
+        <ion-tab-button *ngIf="!isAdm" tab="presence">
             <ion-icon name="barcode"></ion-icon>
             <ion-label>Presence</ion-label>
         </ion-tab-button>

@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {JwtInterceptor} from './helpers/jwt.interceptor';
+import {JwtInterceptor} from './helpers/interceptors/jwt.interceptor';
 
 @NgModule({
     declarations: [AppComponent],

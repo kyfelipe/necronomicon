@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {UserService} from '../../../providers/services/user/user.service';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.page.html',
-  styleUrls: ['./tabs.page.scss'],
+    selector: 'app-tabs',
+    templateUrl: './tabs.page.html',
+    styleUrls: ['./tabs.page.scss'],
+    providers: [UserService]
 })
 export class TabsPage implements OnInit {
+    public isAdm: boolean;
 
-  constructor() { }
+    constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.isAdm = this.userService.getAuthority() !== 'ROLE_STUDENT';
+    }
 
 }
