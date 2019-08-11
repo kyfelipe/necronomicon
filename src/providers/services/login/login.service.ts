@@ -20,6 +20,7 @@ export class LoginService {
 
     public logout() {
         localStorage.removeItem('user');
+        localStorage.removeItem('profile');
     }
 
     public isLogged(): boolean {
@@ -29,7 +30,7 @@ export class LoginService {
     private setUserLocalStorage(user: LoginResponse) {
         if (user && user.accessToken) {
             if (user.perfis[0].authority === 'ROLE_STUDENT' && this.pltUtil.isMobile()
-                || user.perfis[0].authority && this.pltUtil.isDesktop()) {
+                || this.pltUtil.isDesktop()) {
                 localStorage.setItem('user', JSON.stringify(user));
             }
         }

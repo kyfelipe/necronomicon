@@ -1,4 +1,7 @@
 <ion-content>
+    <h1>{{plt.platforms().indexOf('desktop')}}</h1>
+    <h1>{{!plt.platforms().indexOf('desktop')}}</h1>
+    <h1>{{!!plt.platforms().indexOf('desktop')}}</h1>
     <ion-grid class="grid-login">
         <ion-row style="flex-direction: column; margin-bottom: 1rem">
             <ion-col size="12" size-lg="4" offset-lg="4">
