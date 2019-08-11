@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {AuthGuard} from "./guards/auth.guard";
+import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'tabs', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
         path: 'tabs',
         loadChildren: './pages/tabs/tabs.module#TabsPageModule',

@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
     public password: string;
 
     constructor(private route: Router,
-                private plt: Platform,
+                public plt: Platform,
                 private navCtrl: NavController,
                 private loginService: LoginService,
                 private alertCtrl: AlertController,
@@ -23,26 +23,22 @@ export class LoginPage implements OnInit {
     ) { }
 
     ngOnInit() {
+
         this.isMobile = this.plt.is('ios') || this.plt.is('android');
-/*        console.log('IOS: ' + this.plt.is('ios'));
-        console.log('Android: ' + this.plt.is('android'));
-        console.log('Mobile: ' + this.plt.is('mobile'));
-        console.log('Mobile Web: ' + this.plt.is('mobileweb'));
-        console.log('Cordova: ' + this.plt.is('cordova'));*/
     }
 
     public async login() {
         const loading = await this.loadingController.create({
-            message: 'Validating user...',
-            duration: 2000
+            message: 'Validating user...'
         });
         await loading.present();
         this.loginService
             .login(this.email, this.password)
-            .subscribe((user) => {
-                this.route.navigate(['']).catch(err => console.log(err));
+            .subscribe(() => {
+                this.route.navigate(['/tabs/class']).catch(err => console.log(err));
                 loading.dismiss();
             }, err => {
+                loading.dismiss();
                 console.log(err);
                 this.alertCtrl.create({
                     header: 'Login failed ',
@@ -51,5 +47,4 @@ export class LoginPage implements OnInit {
                 }).then(alert => alert.present());
             });
     }
-
 }
