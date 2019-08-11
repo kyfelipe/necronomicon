@@ -1,15 +1,21 @@
 <ion-content>
-    <h1>{{plt.platforms()}}</h1>
     <ion-grid class="grid-login">
-        <ion-row class="ion-justify-content-center" style="flex-direction: column">
+        <ion-row style="flex-direction: column; margin-bottom: 1rem">
             <ion-col size="12" size-lg="4" offset-lg="4">
-                <form (ngSubmit)="login()">
+                <div style="display: flex; justify-content: center">
+                    <img style="width: 12rem;height: auto;" src="../../../assets/777.png"/>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row style="flex-direction: column">
+            <ion-col size="12" size-lg="4" offset-lg="4">
+                <form (ngSubmit)="login()" (keydown.enter)="login()">
                     <ion-item class="ion-margin-bottom">
-                        <ion-label [position]="isMobile ? 'stacked' : 'fixed'">E-mail</ion-label>
+                        <ion-label [position]="!isDesktop ? 'stacked' : 'fixed'">E-mail</ion-label>
                         <ion-input [(ngModel)]="email" name="email" type="email" placeholder="E-mail"></ion-input>
                     </ion-item>
                     <ion-item class="ion-margin-bottom">
-                        <ion-label [position]="isMobile ? 'stacked' : 'fixed'">Password</ion-label>
+                        <ion-label [position]="!isDesktop ? 'stacked' : 'fixed'">Password</ion-label>
                         <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
                     </ion-item>
                     <ion-button type="submit" class="ion-margin-bottom ion-float-end" color="primary">Sign in</ion-button>

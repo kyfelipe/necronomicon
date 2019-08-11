@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AlertController, LoadingController, NavController, Platform} from '@ionic/angular';
 import {LoginService} from '../../../providers/services/login/login.service';
+import {LoginResponse} from '../../../models/login-response';
 
 @Component({
     selector: 'app-login',
@@ -10,7 +11,7 @@ import {LoginService} from '../../../providers/services/login/login.service';
     providers: [LoginService]
 })
 export class LoginPage implements OnInit {
-    public isMobile: boolean;
+    public isDesktop: boolean;
     public email: string;
     public password: string;
 
@@ -23,8 +24,7 @@ export class LoginPage implements OnInit {
     ) { }
 
     ngOnInit() {
-
-        this.isMobile = this.plt.is('ios') || this.plt.is('android');
+        this.isDesktop = !!this.plt.platforms().indexOf('desktop');
     }
 
     public async login() {
@@ -35,13 +35,23 @@ export class LoginPage implements OnInit {
         this.loginService
             .login(this.email, this.password)
             .subscribe(() => {
-                this.route.navigate(['/tabs/class']).catch(err => console.log(err));
+                const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
                 loading.dismiss();
+
+                if (this.isDesktop && (!this.isDesktop || user.perfis[0].authority === 'ROLE_STUDENT')) {
+                    this.route.navigate(['/tabs/class']).catch(err => console.log(err));
+                } else if (!this.isDesktop || user.perfis[0].authority !== 'ROLE_STUDENT') {
+                    this.alertCtrl.create({
+                        header: 'Login failed',
+                        message: 'Admin user cannot access via mobile platform',
+                        buttons: ['OK']
+                    }).then(alert => alert.present());
+                }
             }, err => {
                 loading.dismiss();
                 console.log(err);
                 this.alertCtrl.create({
-                    header: 'Login failed ',
+                    header: 'Login failed',
                     message: 'Email/Password invalid',
                     buttons: ['OK']
                 }).then(alert => alert.present());
