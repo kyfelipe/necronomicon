@@ -17,6 +17,10 @@ export class StudentService {
         return this.http.get<Student>(this.url + '/students/' + id);
     }
 
+    public searchAll() {
+        return this.http.get<Student[]>(this.url + '/students');
+    }
+
     public searchStudentClasses(id: number) {
         return this.http.get<StudentClasses[]>(this.url + '/schoolclasses/' + id);
     }

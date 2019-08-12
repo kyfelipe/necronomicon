@@ -2,6 +2,9 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {AlertController} from "@ionic/angular";
 import {SchoolClassService} from "../../../providers/services/class/school-class.service";
 import {Router} from "@angular/router";
+import {StudentService} from "../../../providers/services/student/student.service";
+import {Observable} from "rxjs";
+import {Student} from "../../../models/student";
 
 @Component({
     selector: 'app-add-class',
@@ -15,10 +18,20 @@ export class AddClassPage implements OnInit {
     public time: string;
     public dayWeek: string;
     public numberOfPeriods: string;
+    public students: number[];
+    public students$: Observable<Student[]>;
 
-    constructor(private alertController: AlertController, private classService: SchoolClassService, private router: Router) { }
+    constructor(
+        private alertController: AlertController,
+        private classService: SchoolClassService,
+        private router: Router,
+        private studentService: StudentService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.students$ = this.studentService.searchAll();
+        this.studentService.searchAll().subscribe((s) => console.log(s));
+    }
 
     public async save() {
         if (this.title && this.date && this.time && this.numberOfPeriods) {
@@ -27,6 +40,7 @@ export class AddClassPage implements OnInit {
             this.alertSuccessForm();
             this.classService
                 .save({
+                    student: this.students,
                     title: this.title,
                     classDates: [
                         {
@@ -36,8 +50,7 @@ export class AddClassPage implements OnInit {
                             hourBegin: parseInt(time[0]),
                             minuteBegin: parseInt(time[1])
                         }
-                    ],
-                    student: []
+                    ]
                 }).subscribe(() => {
                     this.alertSuccessForm();
                 });
