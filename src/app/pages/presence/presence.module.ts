@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PresencePage } from './presence.page';
+import {ToolbarModule} from "../../component/toolbar/toolbar.module";
 
 const routes: Routes = [
     {
@@ -19,7 +20,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        ToolbarModule
     ],
     declarations: [PresencePage]
 })
