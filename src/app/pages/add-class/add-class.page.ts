@@ -1,10 +1,12 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
-import {AlertController} from "@ionic/angular";
-import {SchoolClassService} from "../../../providers/services/class/school-class.service";
-import {Router} from "@angular/router";
-import {StudentService} from "../../../providers/services/student/student.service";
-import {Observable} from "rxjs";
-import {Student} from "../../../models/student";
+import {Component, OnInit} from '@angular/core';
+import {AlertController} from '@ionic/angular';
+import {Router} from '@angular/router';
+
+import {Observable} from 'rxjs';
+
+import {Student} from '../../../models/student';
+import {StudentService} from '../../../providers/services/student/student.service';
+import {SchoolClassService} from '../../../providers/services/class/school-class.service';
 
 @Component({
     selector: 'app-add-class',
@@ -30,7 +32,6 @@ export class AddClassPage implements OnInit {
 
     ngOnInit() {
         this.students$ = this.studentService.searchAll();
-        this.studentService.searchAll().subscribe((s) => console.log(s));
     }
 
     public async save() {
@@ -96,7 +97,7 @@ export class AddClassPage implements OnInit {
         await alert.present();
         setTimeout(() => {
             alert.dismiss();
-            this.router.navigate(['/tabs/register'])
+            this.router.navigate(['/tabs/register']);
         }, 3000);
     }
 }

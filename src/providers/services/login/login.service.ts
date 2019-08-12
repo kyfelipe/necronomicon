@@ -29,6 +29,7 @@ export class LoginService {
     }
 
     private setUserLocalStorage(user: LoginResponse) {
+        /*console.log(user);*/
         if (user && user.accessToken) {
             if (this.pltUtil.isDesktop() || (user.perfis.length === 1)) {
                 localStorage.setItem('user', JSON.stringify(user));

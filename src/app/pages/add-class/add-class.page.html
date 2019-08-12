@@ -55,8 +55,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label>Students</ion-label>
-                        <ion-select [(ngModel)]="students" multiple="true">
-                            <ion-select-option *ngFor="let student of students$ | async">{{student.studentNumber}} | {{student.name}}</ion-select-option>
+                        <ion-select [(ngModel)]="students" name="students" multiple="true">
+                            <ion-select-option *ngFor="let student of students$ | async" [value]="student.id">{{student.studentNumber}} | {{student.name}}</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
