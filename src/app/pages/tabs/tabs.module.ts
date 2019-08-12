@@ -28,6 +28,10 @@ const routes: Routes = [
             {
                 path: 'register',
                 loadChildren: '../register/register.module#RegisterPageModule'
+            },
+            {
+                path: 'presence',
+                loadChildren: '../presence/presence.module#PresencePageModule'
             }
         ]
     }
