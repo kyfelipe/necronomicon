@@ -10,6 +10,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
     },
     { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
+
 ];
 
 @NgModule({

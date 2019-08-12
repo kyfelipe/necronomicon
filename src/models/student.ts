@@ -4,5 +4,5 @@ export interface Student {
     email: string;
     studentNumber: string;
     course: string;
-    schoolClasses: string[];
+    schoolClasses?: string[];
 }

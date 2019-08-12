@@ -5,16 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPage } from './register.page';
-import {ToolbarModule} from '../../component/toolbar/toolbar.module';
+import { AddClassPage } from './add-class.page';
+import {ToolbarModule} from "../../component/toolbar/toolbar.module";
 
 const routes: Routes = [
     {
         path: '',
-        component: RegisterPage
-    },
-    { path: 'add-student', loadChildren: '../add-student/add-student.module#AddStudentPageModule' },
-    { path: 'add-class', loadChildren: '../add-class/add-class.module#AddClassPageModule' }
+        component: AddClassPage
+    }
 ];
 
 @NgModule({
@@ -25,6 +23,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ToolbarModule
     ],
-    declarations: [RegisterPage]
+    declarations: [AddClassPage]
 })
-export class RegisterPageModule {}
+export class AddClassPageModule {}

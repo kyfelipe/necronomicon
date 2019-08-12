@@ -14,7 +14,7 @@ export class TabsPage implements OnInit {
     constructor(private userService: UserService) { }
 
     ngOnInit() {
-        this.isAdm = this.userService.getAuthority() !== 'ROLE_STUDENT';
+        this.isAdm = this.userService.isAdm();
     }
 
 }

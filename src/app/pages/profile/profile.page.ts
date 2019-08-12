@@ -14,11 +14,11 @@ export class ProfilePage implements OnInit {
         registerNumber: string
     };
 
-    constructor(private userSevice: UserService) { }
+    constructor(private userService: UserService) { }
 
     ngOnInit() {
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        this.isAdm = this.userSevice.getAuthority() !== 'ROLE_STUDENT';
+        this.isAdm = this.userService.isAdm();
     }
 
 }

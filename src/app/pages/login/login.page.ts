@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
                 const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
                 loading.dismiss();
 
-                if (this.isDesktop || (!this.isDesktop && user.perfis[0].authority === 'ROLE_STUDENT')) {
+                if (this.isDesktop || (!this.isDesktop && user.perfis.length === 1)) {
                     this.route.navigate(['/tabs/class']).catch(err => console.log(err));
                 }
             }, err => {

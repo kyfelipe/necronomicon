@@ -2,33 +2,58 @@
 
 <ion-content>
     <ion-grid>
-        <ion-row>
-            <ion-col size="4">
-                <ion-item>
-                    <ion-label position="stacked">Name</ion-label>
-                    <ion-input [(ngModel)]="name" type="text" placeholder="Name"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="4">
-                <ion-item>
-                    <ion-label position="stacked">Name</ion-label>
-                    <ion-input [(ngModel)]="name" type="text" placeholder="Name"></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col size="4">
-                <ion-item>
-                    <ion-label position="stacked">Student number</ion-label>
-                    <ion-input [(ngModel)]="studentNumber" type="number" placeholder="Student number"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="4">
-                <ion-item>
-                    <ion-label position="stacked">Course</ion-label>
-                    <ion-input [(ngModel)]="course" type="email" placeholder="Course"></ion-input>
-                </ion-item>
-            </ion-col>
-        </ion-row>
+        <form (ngSubmit)="save()">
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="stacked">
+                            Name
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input [(ngModel)]="name" inputmode="text" name="name" type="text" placeholder="Name" required></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="stacked">
+                            E-mail
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input [(ngModel)]="email" inputmode="email" name="email" type="email" placeholder="E-mail" required></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="stacked">
+                            Student number
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-input [(ngModel)]="studentNumber" inputmode="numeric" name="studentNumber" type="number" placeholder="Student number" required></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item class="mt-item-course">
+                        <ion-label>
+                            Course
+                            <ion-text color="danger">*</ion-text>
+                        </ion-label>
+                        <ion-select interface="popover" [(ngModel)]="course" name="course" required>
+                            <ion-select-option value="Administration">Administration</ion-select-option>
+                            <ion-select-option value="Architecture">Architecture</ion-select-option>
+                            <ion-select-option value="Computer Science">Computer Science</ion-select-option>
+                            <ion-select-option value="Marketing">Marketing</ion-select-option>
+                            <ion-select-option value="Physics">Physics</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col offset="10" size="2">
+                    <ion-button expand="block" type="submit">Save</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
     </ion-grid>
 </ion-content>

@@ -15,4 +15,8 @@ export class StudentService {
     public search(id: number): Observable<Student> {
         return this.http.get<Student>(this.url + '/students/' + id);
     }
+
+    public save(student: Student) {
+        return this.http.post<Student>(this.url + '/students', student);
+    }
 }
