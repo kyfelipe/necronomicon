@@ -3,6 +3,7 @@ import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
 import {AlertController} from '@ionic/angular';
 import {UserService} from "../../../providers/services/user/user.service";
 import {Router} from "@angular/router";
+import { NFC, Ndef } from '@ionic-native/nfc/ngx';
 
 @Component({
     selector: 'app-presence',
@@ -16,7 +17,8 @@ export class PresencePage implements OnInit {
         private qrScanner: QRScanner,
         private alertCtrl: AlertController,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private nfc: NFC, private ndef: Ndef
     ) { }
 
     ngOnInit() {
@@ -25,7 +27,7 @@ export class PresencePage implements OnInit {
         }
     }
 
-    public scanner() {
+    public startScanner() {
         this.qrScanner.prepare().then((status: QRScannerStatus) => {
             if (status.authorized) {
                 // camera permission was granted
@@ -51,12 +53,11 @@ export class PresencePage implements OnInit {
                     message: 'You cannot attend without authorization',
                     buttons: ['OK']
                 }).then(alert => alert.present());
-                this.qrScanner.hide(); // hide camera preview
             }
         }).catch((e: any) => console.log('Error is', e));
     }
 
-    public nfc() {
+    public startNFC() {
 
     }
 }
