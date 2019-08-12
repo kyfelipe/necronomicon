@@ -1,11 +1,13 @@
 <ion-header>
     <ion-toolbar>
+        <ion-buttons *ngIf="navBack" slot="start">
+            <ion-back-button [defaultHref]="navBack"></ion-back-button>
+        </ion-buttons>
         <ion-title>
             {{title}}
         </ion-title>
         <ion-button (click)="logout()" routerLink="/login" routerDirection="forward" fill="clear" slot="end">
             <ion-icon name="exit" size="large"></ion-icon>
         </ion-button>
-
     </ion-toolbar>
 </ion-header>

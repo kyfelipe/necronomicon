@@ -42,12 +42,6 @@ export class LoginPage implements OnInit {
 
                 if (this.isDesktop || (!this.isDesktop && user.perfis[0].authority === 'ROLE_STUDENT')) {
                     this.route.navigate(['/tabs/class']).catch(err => console.log(err));
-                } else if (!this.isDesktop || user.perfis[0].authority !== 'ROLE_STUDENT') {
-                    this.alertCtrl.create({
-                        header: 'Login failed',
-                        message: 'Admin user cannot access via mobile platform',
-                        buttons: ['OK']
-                    }).then(alert => alert.present());
                 }
             }, err => {
                 loading.dismiss();

@@ -9,6 +9,7 @@ import {LoginService} from '../../../providers/services/login/login.service';
 })
 export class ToolbarComponent {
     @Input() title: string;
+    @Input() navBack: string;
 
     constructor(private loginService: LoginService) { }
 

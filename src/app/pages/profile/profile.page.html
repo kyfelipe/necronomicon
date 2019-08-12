@@ -15,7 +15,8 @@
             <ion-col class="ion-text-center" size="12">
                 <span class="profile-name">{{profile.name}}</span>
                 <div>
-                    <span>Student Number: </span>
+                    <span *ngIf="!isAdm">Student Number: </span>
+                    <span *ngIf="isAdm">Register Number: </span>
                     <span>{{profile.registerNumber}}</span>
                 </div>
             </ion-col>
