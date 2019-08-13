@@ -49,7 +49,7 @@ export class AddStudentPage implements OnInit {
         await alert.present();
         setTimeout(() => {
             alert.dismiss();
-            this.router.navigate(['/tabs/register'])
+            this.router.navigate(['/tabs/register']);
         }, 3000);
     }
 }

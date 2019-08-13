@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AlertController, LoadingController, NavController, Platform} from '@ionic/angular';
+import {AlertController, LoadingController, NavController} from '@ionic/angular';
 import {LoginService} from '../../../providers/services/login/login.service';
 import {LoginResponse} from '../../../models/login-response';
 import {PlatformUtil} from '../../helpers/utils/platform.util';
@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
 
     constructor(private route: Router,
                 private pltUtil: PlatformUtil,
-                public plt: Platform,
                 private navCtrl: NavController,
                 private loginService: LoginService,
                 private alertCtrl: AlertController,
@@ -40,7 +39,7 @@ export class LoginPage implements OnInit {
                 const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
                 loading.dismiss();
 
-                if (this.isDesktop || (!this.isDesktop && user.perfis.length === 1)) {
+                if (this.isDesktop || (this.pltUtil.isMobile() && user.perfis.length < 2)) {
                     this.route.navigate(['/tabs/class']).catch(err => console.log(err));
                 }
             }, err => {

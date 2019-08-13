@@ -10,4 +10,14 @@ export class UserService {
         const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
         return user.perfis.length > 1;
     }
+
+    public getId() {
+        const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
+        return user.id;
+    }
+
+    public getRegisterNumber() {
+        const profile = JSON.parse(localStorage.getItem('profile'));
+        return profile.registerNumber;
+    }
 }

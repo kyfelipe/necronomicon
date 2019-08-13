@@ -6,10 +6,22 @@ export class PlatformUtil {
     constructor(private plt: Platform) { }
 
     public isDesktop(): boolean {
-        return !!this.plt.platforms().indexOf('desktop');
+        let desktop = false;
+        this.plt.platforms().forEach((p) => {
+            if (p === 'desktop') {
+                desktop = true;
+            }
+        });
+        return desktop;
     }
 
     public isMobile(): boolean {
-        return !this.plt.platforms().indexOf('desktop');
+        let mobile = false;
+        this.plt.platforms().forEach((p) => {
+            if (p === 'mobile') {
+                mobile = true;
+            }
+        });
+        return mobile;
     }
 }

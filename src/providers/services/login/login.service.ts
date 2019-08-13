@@ -31,7 +31,7 @@ export class LoginService {
     private setUserLocalStorage(user: LoginResponse) {
         /*console.log(user);*/
         if (user && user.accessToken) {
-            if (this.pltUtil.isDesktop() || (user.perfis.length === 1)) {
+            if (this.pltUtil.isDesktop() || (this.pltUtil.isMobile() && user.perfis.length < 2)) {
                 localStorage.setItem('user', JSON.stringify(user));
             } else {
                 this.alertCtrl.create({

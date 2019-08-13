@@ -1,11 +1,10 @@
 {
-  "name": "necronomicon",
+  "name": "solutions777",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Moises Vicente",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --lab",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +27,8 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "cordova-android": "^8.0.0",
+    "cordova-browser": "^6.0.0",
+    "cordova-plugin-qrscanner": "^3.0.1",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.5.1",
@@ -77,10 +78,13 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "phonegap-nfc": {},
+      "cordova-plugin-qrscanner": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

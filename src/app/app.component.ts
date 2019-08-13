@@ -32,9 +32,9 @@ export class AppComponent {
             this.splashScreen.hide();
         });
 
-/*        this.isLogged = this.loginService.isLogged();
+        this.isLogged = this.loginService.isLogged();
         if (this.isLogged) {
             this.route.navigate(['/tabs/class']).catch(err => console.log(err));
-        }*/
+        }
     }
 }
