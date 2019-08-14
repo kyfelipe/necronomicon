@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {StudentService} from "../../../providers/services/student/student.service";
-import {AlertController} from "@ionic/angular";
-import {Router} from "@angular/router";
+import {StudentService} from '../../../providers/services/student/student.service';
+import {AlertController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-add-student',
@@ -10,7 +10,6 @@ import {Router} from "@angular/router";
 })
 export class AddStudentPage implements OnInit {
     public name: string;
-    public email: string;
     public studentNumber: string;
     public course: string;
 
@@ -19,10 +18,10 @@ export class AddStudentPage implements OnInit {
     ngOnInit() { }
 
     async save() {
-        if (this.name && this.email && this.studentNumber && this.course) {
+        if (this.name && this.studentNumber && this.course) {
             this.alertSuccessForm();
             this.studentService
-                .save({name: this.name, email: this.email, studentNumber: this.studentNumber, course: this.course})
+                .save({name: this.name, studentNumber: this.studentNumber, course: this.course})
                 .subscribe(() => {
                     this.alertSuccessForm();
                 });

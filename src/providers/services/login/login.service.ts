@@ -14,8 +14,8 @@ export class LoginService {
 
     constructor(private http: HttpClient, private alertCtrl: AlertController, private pltUtil: PlatformUtil) { }
 
-    public login(email: string, password: string) {
-        return this.http.post<LoginResponse>(this.url + '/auth/login', { email, password })
+    public login(studentNumber: string, password: string) {
+        return this.http.post<LoginResponse>(this.url + '/auth/login', { studentNumber, password })
             .pipe(map((user) => this.setUserLocalStorage(user)));
     }
 

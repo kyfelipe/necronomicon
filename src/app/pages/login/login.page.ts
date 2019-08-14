@@ -13,7 +13,7 @@ import {PlatformUtil} from '../../helpers/utils/platform.util';
 })
 export class LoginPage implements OnInit {
     public isDesktop: boolean;
-    public email: string;
+    public studentNumber: string;
     public password: string;
 
     constructor(private route: Router,
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
         });
         await loading.present();
         this.loginService
-            .login(this.email, this.password)
+            .login(this.studentNumber, this.password)
             .subscribe(() => {
                 const user: LoginResponse = JSON.parse(localStorage.getItem('user'));
                 loading.dismiss();

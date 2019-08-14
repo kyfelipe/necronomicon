@@ -15,8 +15,8 @@
             <ion-label>Register</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button *ngIf="!isAdm" tab="presence">
-            <ion-icon name="barcode"></ion-icon>
+        <ion-tab-button *ngIf="!isAdm && isMobile" tab="presence">
+            <ion-icon name="wifi"></ion-icon>
             <ion-label>Presence</ion-label>
         </ion-tab-button>
 

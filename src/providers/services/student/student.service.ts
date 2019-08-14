@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Student} from '../../../models/student';
-import {Observable} from 'rxjs';
-import {StudentClasses} from "../../../models/student-classes";
+import {Registers} from '../../../models/registers';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +22,7 @@ export class StudentService {
     }
 
     public searchStudentClasses(id: number) {
-        return this.http.get<StudentClasses[]>(this.url + '/schoolclasses/' + id);
+        return this.http.get<Registers>(this.url + '/registers/' + id);
     }
 
     public save(student: Student) {

@@ -3,23 +3,27 @@
 <ion-content *ngIf="student">
     <ion-grid class="ion-padding">
         <ion-row>
-            <ion-col *ngFor="let cl of classes" size="12" size-lg="4">
+            <ion-col *ngFor="let cl of registers.schoolClassRegisterResponseDTOS; let i" size="12" size-lg="4">
                 <ion-card>
                     <ion-card-header>
                         <ion-card-subtitle>{{student.course}}</ion-card-subtitle>
-                        <ion-card-title>{{cl.title}}</ion-card-title>
+                        <ion-card-title>{{cl.schoolClassName}}</ion-card-title>
                     </ion-card-header>
                     <ion-item>
-                        <ion-icon name="calendar" slot="start"></ion-icon>
-                        <ion-label>{{cl.dayOfWeek}}</ion-label>
+                        <ion-icon name="time" slot="start"></ion-icon>
+                        <ion-label>Current: {{cl.current}}</ion-label>
                     </ion-item>
                     <ion-item>
-                        <ion-icon name="time" slot="start"></ion-icon>
-                        <ion-label>{{cl.hourClass}}</ion-label>
+                        <ion-icon name="calendar" slot="start"></ion-icon>
+                        <ion-label>Total class: {{cl.totalClass}}</ion-label>
                     </ion-item>
                     <ion-item>
                         <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-                        <ion-label>77</ion-label>
+                        <ion-label>Percentage: {{cl.percentage}}%</ion-label>
+                    </ion-item>
+                    <ion-item [color]="setColorLabel(cl.situation)">
+                        <ion-icon name="thermometer" slot="start"></ion-icon>
+                        <ion-label>Situation: {{cl.situation}}%</ion-label>
                     </ion-item>
                 </ion-card>
             </ion-col>

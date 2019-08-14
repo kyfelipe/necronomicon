@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {QRScanner, QRScannerStatus} from '@ionic-native/qr-scanner/ngx';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {UserService} from '../../../providers/services/user/user.service';
 import {Router} from '@angular/router';
@@ -10,12 +9,11 @@ import {PresenceService} from '../../../providers/services/presence/presence.ser
     selector: 'app-presence',
     templateUrl: './presence.page.html',
     styleUrls: ['./presence.page.scss'],
-    providers: [QRScanner, UserService, NFC, PresenceService]
+    providers: [UserService, NFC, PresenceService]
 })
 export class PresencePage implements OnInit {
 
     constructor(
-        private qrScanner: QRScanner,
         private alertCtrl: AlertController,
         private userService: UserService,
         private router: Router,
@@ -30,42 +28,19 @@ export class PresencePage implements OnInit {
         }
     }
 
-    public async startScanner() {
-        await this.qrScanner.prepare().then((status: QRScannerStatus) => {
-            if (status.authorized) {
-                // camera permission was granted
-                // start scanning
-                this.qrScanner.show().then(() => {
-                    const scanSub = this.qrScanner.scan().subscribe(async (text: string) => {
-                        console.log('Scanned something', text);
-                        this.save(text);
-                        this.qrScanner.hide().then(() => scanSub.unsubscribe()); // stop scanning // hide camera preview
-                    });
-                });
-
-            } else if (status.denied) {
-                if (confirm('Would you like to enable QR code scanning? You can allow camera access in your settings.')){
-                    this.qrScanner.openSettings();
-                }
-            } else {
-                // permission was denied, but not permanently. You can ask for permission again at a later time.
-                this.alertCtrl.create({
-                    header: 'Scanner denied',
-                    message: 'You cannot attend without authorization',
-                    buttons: ['OK']
-                }).then(alert => alert.present());
-            }
-        }).catch((e: any) => console.log('Error is', e));
-    }
-
     public startNFC() {
+        this.alertCtrl.create({
+            header: 'Waiting for connection',
+            message: '<ion-icon name="wifi" size="large"></ion-icon>'
+        }).then(a => a.present());
+
         this.nfc.addNdefListener(() => {
             console.log('successfully attached ndef listener');
         }, (err) => {
             console.log('error attaching ndef listener', err);
         }).subscribe(async (event) => {
-            console.log('received ndef message. the tag contains: ', this.nfc.bytesToHexString(event.tag.id));
-            this.save(this.nfc.bytesToHexString(event.tag.id));
+            console.log('received ndef message. the tag contains: ', this.nfc.bytesToString(event.tag.id));
+            this.save(this.nfc.bytesToString(event.tag.id));
         });
     }
 
@@ -76,24 +51,21 @@ export class PresencePage implements OnInit {
         await loading.present();
 
         this.presenceService
-            .save(this.userService.getId(), this.userService.getRegisterNumber(), parseInt(text))
+            .save(this.userService.getId(), this.userService.getRegisterNumber(), text)
             .subscribe(() => {
                 loading.dismiss();
                 this.alertCtrl.create({
                     header: 'Presence success',
                     buttons: ['OK']
                 }).then(alert => alert.present());
-            }, async () => {
+            }, async (err: Error) => {
                 await loading.dismiss();
                 const alert = await this.alertCtrl.create({
                     header: 'Fail',
-                    message: 'Student successfully saved. Redirecting in 3s...'
+                    subHeader: 'Failed to save presence',
+                    message: `${err.message}`
                 });
                 await alert.present();
-                setTimeout(() => {
-                    alert.dismiss();
-                    this.router.navigate(['/tabs/class']);
-                }, 3000);
             });
     }
 }
