@@ -1,11 +1,11 @@
 <app-toolbar title="Add Class" navBack="/tabs/register"></app-toolbar>
 
-<ion-content>
+<ion-content color="dark">
     <ion-grid>
         <form (ngSubmit)="save()">
             <ion-row>
                 <ion-col size="8" class="mt-item-class">
-                    <ion-item>
+                    <ion-item color="dark">
                         <ion-label position="stacked">
                             Title
                             <ion-text color="danger">*</ion-text>
@@ -14,7 +14,7 @@
                     </ion-item>
                 </ion-col>
                 <ion-col size="4">
-                    <ion-item class="mt-item-class">
+                    <ion-item color="dark" class="mt-item-class">
                         <ion-label position="stacked">
                             Number of periods
                             <ion-text color="danger">*</ion-text>
@@ -25,7 +25,7 @@
             </ion-row>
             <ion-row>
                 <ion-col size="5">
-                    <ion-item>
+                    <ion-item color="dark">
                         <ion-label position="stacked">
                             Start date
                             <ion-text color="danger">*</ion-text>
@@ -34,7 +34,7 @@
                     </ion-item>
                 </ion-col>
                 <ion-col size="2">
-                    <ion-item>
+                    <ion-item color="dark">
                         <ion-label position="stacked">
                             Day of the week
                         </ion-label>
@@ -42,7 +42,7 @@
                     </ion-item>
                 </ion-col>
                 <ion-col size="5">
-                    <ion-item>
+                    <ion-item color="dark">
                         <ion-label position="stacked">
                             Begin
                             <ion-text color="danger">*</ion-text>
@@ -53,7 +53,7 @@
             </ion-row>
             <ion-row>
                 <ion-col size="12">
-                    <ion-item>
+                    <ion-item color="dark">
                         <ion-label>Students</ion-label>
                         <ion-select [(ngModel)]="students" name="students" multiple="true">
                             <ion-select-option *ngFor="let student of students$ | async" [value]="student.id">{{student.studentNumber}} | {{student.name}}</ion-select-option>

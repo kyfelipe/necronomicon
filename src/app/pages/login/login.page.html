@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content color="dark">
     <ion-grid class="grid-login">
         <ion-row style="flex-direction: column; margin-bottom: 1rem">
             <ion-col size="12" size-lg="4" offset-lg="4">
@@ -10,11 +10,11 @@
         <ion-row style="flex-direction: column">
             <ion-col size="12" size-lg="4" offset-lg="4">
                 <form (ngSubmit)="login()" (keydown.enter)="login()">
-                    <ion-item class="ion-margin-bottom">
+                    <ion-item color="dark" class="ion-margin-bottom">
                         <ion-label position="stacked">Student Number</ion-label>
                         <ion-input inputmode="numeric" class="student-input" [(ngModel)]="studentNumber" name="studentNumber" type="number" placeholder="Student Number"></ion-input>
                     </ion-item>
-                    <ion-item class="ion-margin-bottom">
+                    <ion-item color="dark" class="ion-margin-bottom">
                         <ion-label position="stacked">Password</ion-label>
                         <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Password"></ion-input>
                     </ion-item>

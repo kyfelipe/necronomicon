@@ -1,27 +1,27 @@
 <app-toolbar title="Classes"></app-toolbar>
 
-<ion-content *ngIf="registers">
+<ion-content color="dark" *ngIf="registers">
     <ion-grid class="ion-padding">
         <ion-row>
             <ion-col *ngFor="let cl of registers.schoolClassRegisterResponseDTOS" size="12" size-lg="4">
-                <ion-card>
-                    <ion-card-header>
+                <ion-card color="light">
+                    <ion-card-header color="light">
                         <ion-card-subtitle>{{student?.course}}</ion-card-subtitle>
                         <ion-card-title>{{cl.schoolClassName}}</ion-card-title>
                     </ion-card-header>
-                    <ion-item>
+                    <ion-item color="light">
                         <ion-icon name="time" slot="start"></ion-icon>
                         <ion-label>Current: {{cl.current}}</ion-label>
                     </ion-item>
-                    <ion-item>
+                    <ion-item color="light">
                         <ion-icon name="calendar" slot="start"></ion-icon>
                         <ion-label>Total class: {{cl.totalClass}}</ion-label>
                     </ion-item>
-                    <ion-item>
+                    <ion-item color="light">
                         <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
                         <ion-label>Percentage: {{cl.percentage}}%</ion-label>
                     </ion-item>
-                    <ion-item>
+                    <ion-item color="light">
                         <ion-icon name="thermometer" slot="start"></ion-icon>
                         <ion-label>Situation: <ion-text [color]="setColorLabel(cl.situation)" style="font-weight: 500">{{cl.situation}}</ion-text></ion-label>
                     </ion-item>
