@@ -13,7 +13,6 @@ export class SchoolClassService {
     constructor(private http: HttpClient) { }
 
     public save(schoolClass: Class) {
-        console.log(schoolClass);
         return this.http.post(this.url + '/schoolclasses', {schoolClass});
     }
 

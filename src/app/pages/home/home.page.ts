@@ -5,13 +5,6 @@ import {Student} from '../../../models/student';
 import {StudentService} from '../../../providers/services/student/student.service';
 import {Registers} from '../../../models/registers';
 
-declare type Color = 'success' | 'primary' | 'secondary' | 'warning' | 'danger';
-
-interface ColorSituation {
-    situation: string;
-    color: Color;
-}
-
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
@@ -21,7 +14,6 @@ export class HomePage implements OnInit {
     public student: Student;
     public loading;
     public registers: Registers;
-    private colors: ColorSituation[];
 
     constructor(
         private loadingCtrl: LoadingController,
@@ -34,29 +26,6 @@ export class HomePage implements OnInit {
         });
         await this.loading.present();
         this.search();
-
-        this.colors = [
-            {
-                situation: 'SAT',
-                color: 'success'
-            },
-            {
-                situation: 'REG',
-                color: 'primary'
-            },
-            {
-                situation: 'TOL',
-                color: 'secondary'
-            },
-            {
-                situation: 'UNS',
-                color: 'warning'
-            },
-            {
-                situation: 'SUS',
-                color: 'danger'
-            }
-        ];
     }
 
     public search() {
@@ -66,12 +35,21 @@ export class HomePage implements OnInit {
         this.searchRegisters(user.id);
     }
 
-    public setColorLabel(situation: string): Color | void {
-        return this.colors.forEach((color): Color => {
-            if (color.situation === situation) {
-                return color.color;
-            }
-        });
+    public setColorLabel(situation: string): string {
+        switch (situation) {
+            case 'SAT':
+                return 'success';
+            case 'REG':
+                return 'primary';
+            case 'TOL':
+                return 'secondary';
+            case 'UNS':
+                return 'warning';
+            case 'SUS':
+                return 'danger';
+            default:
+                return '';
+        }
     }
 
     private searchProfile(userId) {

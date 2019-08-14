@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
                 console.log(err);
                 this.alertCtrl.create({
                     header: 'Login failed',
-                    message: 'Email/Password invalid',
+                    message: 'StudentNumber or Password invalid',
                     buttons: ['OK']
                 }).then(alert => alert.present());
             });

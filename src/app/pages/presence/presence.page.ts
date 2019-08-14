@@ -58,14 +58,13 @@ export class PresencePage implements OnInit {
                     header: 'Presence success',
                     buttons: ['OK']
                 }).then(alert => alert.present());
-            }, async (err: Error) => {
-                await loading.dismiss();
-                const alert = await this.alertCtrl.create({
+            }, (err: Error) => {
+                loading.dismiss();
+                this.alertCtrl.create({
                     header: 'Fail',
                     subHeader: 'Failed to save presence',
                     message: `${err.message}`
-                });
-                await alert.present();
+                }).then(alert => alert.present());
             });
     }
 }
