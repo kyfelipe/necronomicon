@@ -4,7 +4,7 @@ import {UserService} from '../../../providers/services/user/user.service';
 import {Router} from '@angular/router';
 import {NFC} from '@ionic-native/nfc/ngx';
 import {PresenceService} from '../../../providers/services/presence/presence.service';
-import {ConsoleService} from "../../../providers/services/console.service";
+import {ConsoleService} from '../../../providers/services/console.service';
 
 @Component({
     selector: 'app-presence',
