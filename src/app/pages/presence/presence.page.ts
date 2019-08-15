@@ -33,7 +33,7 @@ export class PresencePage implements OnInit {
     public startNFC() {
         this.consoleService.console('Entrou na função: startNFC()');
         this.alertCtrl.create({
-            header: 'Waiting for connection <ion-icon name="wifi" size="large"></ion-icon>'
+            header: 'Waiting for connection'
         }).then(a => a.present());
 
         this.nfc.addNdefListener(() => {
