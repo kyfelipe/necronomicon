@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {UserService} from '../../../providers/services/user/user.service';
 import {Router} from '@angular/router';
-import {NFC} from '@ionic-native/nfc/ngx';
+import {NFC, Ndef} from '@ionic-native/nfc/ngx';
 import {PresenceService} from '../../../providers/services/presence/presence.service';
 import {ConsoleService} from '../../../providers/services/console.service';
 
@@ -20,7 +20,7 @@ export class PresencePage implements OnInit {
         private router: Router,
         private loadingController: LoadingController,
         private presenceService: PresenceService,
-        private nfc: NFC,
+        private nfc: NFC, private ndef: Ndef,
         private consoleService: ConsoleService
     ) { }
 
